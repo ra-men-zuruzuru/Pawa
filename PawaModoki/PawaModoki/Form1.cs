@@ -16,5 +16,16 @@ namespace PawaModoki
         {
             InitializeComponent();
         }
+
+        private void buttonEnd_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            EditMenu editMenu = new EditMenu();
+            editMenu.Show(this);
+        }
     }
 }
