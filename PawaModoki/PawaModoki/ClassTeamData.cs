@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static PawaModoki.Team;
 
 namespace PawaModoki
 {
@@ -29,41 +30,57 @@ namespace PawaModoki
     {
         public int Id { get; set; }
         public string TeamName { get; set; }
-        public class Player
+
+        //野手
+        public class FielderPlayer
         {
             public string Name { get; set; }
-            public int Number { get; set; }
-            public int Position {  get; set; }
-            public int Trajectory {  get; set; }
-            public int Meat {  get; set; }
-            public int Power {  get; set; }
-            public int RunPower {  get; set; }
-            public int Defence {  get; set; }
-            public int CatchPower {  get; set; }
+            public int Number { get; set; }//打順
+            public int Position { get; set; }//ポジション
+            public int Trajectory { get; set; }//弾道
+            public int Meat { get; set; }
+            public int Power { get; set; }
+            public int RunPower { get; set; }
+            public int Defence { get; set; }
+            public int CatchPower { get; set; }
         }
-        public List<Player> Players { get; set; } = new List<Player>();
-    }
-
-    public class TeamManager
-    {
-        public static TeamManager instance;
-
-        public static TeamManager Instance
+        //投手
+        public class PitcherPlayer
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new TeamManager();
-                }
-                return instance;
-            }
+            public string Name { get; set; }
+            public int BallSpeed { get; set; }
+            public int Stamina { get; set; }
+            public int Control { get; set; }
+            public int Slider { get; set; }
+            public int Curve { get; set; }
+            public int Fork { get; set; }
+            public int Sinker { get; set; }
+            public int Shut { get; set; }
+        }
+            public List<FielderPlayer> FielderPlayers { get; set; } = new List<FielderPlayer>();
+            public List<PitcherPlayer> PitcherPlayers { get; set; } = new List<PitcherPlayer>();
         }
 
-        public TeamManager() { }
+        public class TeamManager
+        {
+            public static TeamManager instance;
 
-        public List<Team> Teams { get; set; } = new List<Team>();
-    }
+            public static TeamManager Instance
+            {
+                get
+                {
+                    if (instance == null)
+                    {
+                        instance = new TeamManager();
+                    }
+                    return instance;
+                }
+            }
 
+            public TeamManager() { }
 
+            public List<Team> Teams { get; set; } = new List<Team>();
+        }
+
+    
 }

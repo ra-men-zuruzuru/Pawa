@@ -16,7 +16,7 @@ namespace PawaModoki
         public test()
         {
             InitializeComponent();
-            label1.Text = TeamManager.instance.Teams[0].TeamName;//参照可能！！！
+            //label1.Text = TeamManager.instance.Teams[0];//参照可能！！！
         }
     }
 }
