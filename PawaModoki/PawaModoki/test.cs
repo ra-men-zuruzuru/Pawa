@@ -16,7 +16,14 @@ namespace PawaModoki
         public test()
         {
             InitializeComponent();
-            //label1.Text = TeamManager.instance.Teams[0];//参照可能！！！
+            Team team = TeamManager.Instance.Teams[0];
+            Console.WriteLine($"{team.TeamName} {team.Id}");
+            foreach (var t in team.FielderPlayers)
+            {
+                Console.WriteLine($"{t.Name} {t.BattingOrder} {t.Position} {t.Meat}");
+                string a=t.Name;
+                label1.Text=a.Replace("System.Windows.Forms.TextBox, Text:", "");
+            }
         }
     }
 }
