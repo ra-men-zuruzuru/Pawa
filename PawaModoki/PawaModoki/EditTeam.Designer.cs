@@ -61,6 +61,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonreturn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelTeamNum
@@ -352,7 +353,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(861, 445);
+            this.buttonSave.Location = new System.Drawing.Point(952, 445);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(128, 53);
             this.buttonSave.TabIndex = 40;
@@ -360,11 +361,22 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // buttonreturn
+            // 
+            this.buttonreturn.Location = new System.Drawing.Point(1124, 479);
+            this.buttonreturn.Name = "buttonreturn";
+            this.buttonreturn.Size = new System.Drawing.Size(142, 53);
+            this.buttonreturn.TabIndex = 41;
+            this.buttonreturn.Text = "もどる";
+            this.buttonreturn.UseVisualStyleBackColor = true;
+            this.buttonreturn.Click += new System.EventHandler(this.buttonreturn_Click);
+            // 
             // EditTeam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 544);
+            this.Controls.Add(this.buttonreturn);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label28);
@@ -441,5 +453,6 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonreturn;
     }
 }

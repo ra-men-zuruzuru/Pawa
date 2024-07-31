@@ -27,5 +27,27 @@ namespace PawaModoki
             EditMenu editMenu = new EditMenu();
             editMenu.Show(this);
         }
+
+        private void buttonNewGame_Click(object sender, EventArgs e)
+        {
+            TeamSelection teamSelection = new TeamSelection();
+            teamSelection.Show(this);
+            /*
+            if (TeamManager.Instance!=null&&TeamManager.instance.Teams.Count>=1)
+            {
+                SelectionOpen();
+            }
+            else
+            {
+                MessageBox.Show("保存されているチーム数が2未満です。チームエディットでチームを作成してください。", "エラー"
+                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            */
+        }
+        private void SelectionOpen()
+        {
+            TeamSelection teamSelection = new TeamSelection();
+            teamSelection.Show(this);
+        }
     }
 }

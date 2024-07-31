@@ -30,6 +30,7 @@ namespace PawaModoki
     {
         public int Id { get; set; }
         public string TeamName { get; set; }
+        public string TeamStrength {  get; set; }
 
         //野手
         public class FielderPlayer

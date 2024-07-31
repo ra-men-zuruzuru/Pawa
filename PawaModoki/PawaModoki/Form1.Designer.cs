@@ -41,6 +41,7 @@
             this.buttonNewGame.TabIndex = 0;
             this.buttonNewGame.Text = "ゲームをはじめる";
             this.buttonNewGame.UseVisualStyleBackColor = true;
+            this.buttonNewGame.Click += new System.EventHandler(this.buttonNewGame_Click);
             // 
             // buttonEdit
             // 
