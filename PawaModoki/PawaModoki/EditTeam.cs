@@ -27,7 +27,7 @@ namespace PawaModoki
         List<Button> listButtonCatchpower=new List<Button>();
         //投手のリスト
         List<TextBox> listTextboxPitcherPlayerName = new List<TextBox>();
-        List<Button>listButtonBoc=new List<Button>();
+        List<Button>listButtonBos=new List<Button>();
         List<Button>listButtonStamina=new List<Button>();
         List<Button>listButtonControl=new List<Button>();
         List<Button> listButtonSlider=new List<Button>();
@@ -165,7 +165,7 @@ namespace PawaModoki
                 bosButton.MouseUp += new MouseEventHandler(ButtonMPRDC_RightClick);
                 bosButton.Tag = 3;
                 this.Controls.Add(bosButton);
-                listButtonBoc.Add(bosButton);
+                listButtonBos.Add(bosButton);
                 //スタミナ
                 Button staminaButton = new Button();
                 staminaButton.Name = "ButtonStamina"+(i+1);
@@ -294,6 +294,7 @@ namespace PawaModoki
                     catchPower[i] = t.CatchPower;
                     ++i;
                 }
+                i = 0;
                 for (int j=0;j<9;j++)
                 {
                     listTextboxFielderPlayerName.ElementAt(j).Text = nameFielder[j];
@@ -310,6 +311,40 @@ namespace PawaModoki
                     listButtonDefence.ElementAt(j).Tag=defence[j];
                     listButtonCatchpower.ElementAt(j).Text = mprdcsc[catchPower[j]];
                     listButtonCatchpower.ElementAt(j).Tag = catchPower[j];
+                }
+                foreach (var t in team.PitcherPlayers)
+                {
+                    string s = t.Name;
+                    namePitcher[i] = s.Replace("System.Windows.Forms.TextBox, Text: ", "");
+                    bos[i] = t.BallSpeed;
+                    stamina[i] = t.Stamina;
+                    control[i] = t.Controll;
+                    slider[i] = t.Slider;
+                    curve[i] = t.Curve;
+                    fork[i] = t.Fork;
+                    sinker[i] = t.Sinker;
+                    shut[i] = t.Shut;
+                    ++i;
+                }
+                for (int j=0;j<6;j++)
+                {
+                    listTextboxPitcherPlayerName.ElementAt(j).Text = namePitcher[j];
+                    listButtonBos.ElementAt(j).Text = mprdcsc[bos[j]];
+                    listButtonBos.ElementAt (j).Tag = bos[j];
+                    listButtonStamina.ElementAt(j).Text= mprdcsc[stamina[j]];
+                    listButtonStamina.ElementAt(j).Tag = stamina[j];
+                    listButtonControl.ElementAt(j).Text=mprdcsc[control[j]];
+                    listButtonControl.ElementAt (j).Tag = control[j];
+                    listButtonSlider.ElementAt(j).Text = boc[slider[j]];
+                    listButtonSlider.ElementAt (j).Tag = slider[j];
+                    listButtonCurve.ElementAt(j).Text=boc[curve[j]];
+                    listButtonCurve.ElementAt(j).Tag= curve[j];
+                    listButtonFork.ElementAt(j).Text=boc[fork[j]];
+                    listButtonFork.ElementAt(j).Tag = fork[j];
+                    listButtonSinker.ElementAt(j).Text= boc[sinker[j]];
+                    listButtonSinker.ElementAt (j).Tag = sinker[j];
+                    listButtonShut.ElementAt(j).Text = boc[shut[j]];
+                    listButtonShut.ElementAt (j).Tag = shut[j];
                 }
             }
             else
@@ -423,6 +458,7 @@ namespace PawaModoki
         private void Save()
         {
             TeamManager newinstance = new TeamManager();
+            Team team=new Team();;
             team.TeamName=textBoxTeamName.Text;
             team.Id = NowEditTeamNum.Instance.Num;
             labelTeamNum.Text = $"現在編集中のチームidは{team.Id}です。チーム名は{team.TeamName}です。";
@@ -450,7 +486,7 @@ namespace PawaModoki
                 Team.PitcherPlayer pitcher = new Team.PitcherPlayer
                 {
                     Name=listTextboxPitcherPlayerName.ElementAt(i).ToString(),
-                    BallSpeed=(int)listButtonBoc.ElementAt(i).Tag,
+                    BallSpeed=(int)listButtonBos.ElementAt(i).Tag,
                     Stamina=(int)listButtonStamina.ElementAt(i).Tag,
                     Controll=(int)listButtonControl.ElementAt(i).Tag,
                     Slider=(int)listButtonSlider.ElementAt(i).Tag,
@@ -461,7 +497,8 @@ namespace PawaModoki
                 };
                 team.PitcherPlayers.Add(pitcher);
             }
-            TeamManager.Instance.Teams.Add(team);
+            TeamManager.Instance.RemoveTeam(NowEditTeamNum.Instance.Num);
+            TeamManager.instance.Teams.Add(team);
             MessageBox.Show("チームデータの保存が完了しました。", "保存完了"
                         , MessageBoxButtons.OK,MessageBoxIcon.Information);
         }

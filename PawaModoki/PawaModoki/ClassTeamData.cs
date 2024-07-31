@@ -86,6 +86,14 @@ namespace PawaModoki
         {
             return Teams.Find(team=>team.Id==id);
         }
+        public void RemoveTeam(int id)
+        {
+            Team teamToRemove = GetId(id);
+            if (teamToRemove != null)
+            {
+                Teams.Remove(teamToRemove);
+            }
+        }
         public static void SetInstance(TeamManager newInstance)
         {
             instance = newInstance;
