@@ -32,7 +32,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.labelFirst = new System.Windows.Forms.Label();
             this.labelSecond = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -41,14 +40,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.buttonreturn = new System.Windows.Forms.Button();
+            this.buttonGameStart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(154, 13);
+            this.label1.Location = new System.Drawing.Point(160, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 30);
             this.label1.TabIndex = 0;
@@ -66,35 +66,27 @@
             // 
             // labelFirst
             // 
+            this.labelFirst.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelFirst.AutoSize = true;
             this.labelFirst.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelFirst.Location = new System.Drawing.Point(152, 81);
+            this.labelFirst.Location = new System.Drawing.Point(118, 81);
             this.labelFirst.Name = "labelFirst";
-            this.labelFirst.Size = new System.Drawing.Size(112, 40);
+            this.labelFirst.Size = new System.Drawing.Size(194, 40);
             this.labelFirst.TabIndex = 2;
-            this.labelFirst.Text = "label3";
+            this.labelFirst.Text = "先攻チーム";
             this.labelFirst.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelSecond
             // 
+            this.labelSecond.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSecond.AutoSize = true;
             this.labelSecond.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelSecond.Location = new System.Drawing.Point(1008, 81);
+            this.labelSecond.Location = new System.Drawing.Point(932, 81);
             this.labelSecond.Name = "labelSecond";
-            this.labelSecond.Size = new System.Drawing.Size(112, 40);
+            this.labelSecond.Size = new System.Drawing.Size(194, 40);
             this.labelSecond.TabIndex = 3;
-            this.labelSecond.Text = "label3";
+            this.labelSecond.Text = "後攻チーム";
             this.labelSecond.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.progressBar1.Location = new System.Drawing.Point(125, 151);
-            this.progressBar1.MarqueeAnimationSpeed = 0;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(261, 23);
-            this.progressBar1.TabIndex = 4;
-            this.progressBar1.Value = 70;
             // 
             // label3
             // 
@@ -168,23 +160,33 @@
             this.label10.TabIndex = 12;
             this.label10.Text = "投手力";
             // 
-            // progressBar2
+            // buttonreturn
             // 
-            this.progressBar2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.progressBar2.Location = new System.Drawing.Point(876, 151);
-            this.progressBar2.MarqueeAnimationSpeed = 0;
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.progressBar2.Size = new System.Drawing.Size(261, 23);
-            this.progressBar2.TabIndex = 13;
-            this.progressBar2.Value = 70;
+            this.buttonreturn.Location = new System.Drawing.Point(1148, 484);
+            this.buttonreturn.Name = "buttonreturn";
+            this.buttonreturn.Size = new System.Drawing.Size(118, 48);
+            this.buttonreturn.TabIndex = 14;
+            this.buttonreturn.Text = "もどる";
+            this.buttonreturn.UseVisualStyleBackColor = true;
+            this.buttonreturn.Click += new System.EventHandler(this.buttonreturn_Click);
+            // 
+            // buttonGameStart
+            // 
+            this.buttonGameStart.Location = new System.Drawing.Point(560, 266);
+            this.buttonGameStart.Name = "buttonGameStart";
+            this.buttonGameStart.Size = new System.Drawing.Size(146, 49);
+            this.buttonGameStart.TabIndex = 15;
+            this.buttonGameStart.Text = "試合開始";
+            this.buttonGameStart.UseVisualStyleBackColor = true;
+            this.buttonGameStart.Click += new System.EventHandler(this.buttonGameStart_Click);
             // 
             // TeamSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 544);
-            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.buttonGameStart);
+            this.Controls.Add(this.buttonreturn);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -193,7 +195,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.labelSecond);
             this.Controls.Add(this.labelFirst);
             this.Controls.Add(this.label2);
@@ -212,7 +213,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelFirst;
         private System.Windows.Forms.Label labelSecond;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -221,6 +221,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.Button buttonreturn;
+        private System.Windows.Forms.Button buttonGameStart;
     }
 }

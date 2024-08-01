@@ -32,7 +32,7 @@ namespace PawaModoki
                 {
                     foreach (var t in TeamManager.instance.Teams)
                     {
-                        if (t.Id==i+1)
+                        if (t.Id==i)
                         {
                             button.Text = t.TeamName;
                             isfind = true;
@@ -73,6 +73,7 @@ namespace PawaModoki
         {
             editTeam = new EditTeam();
             editTeam.Show();
+            this.Close();
         }
 
         private void buttonInEditMenuReturn_Click(object sender, EventArgs e)
@@ -82,31 +83,31 @@ namespace PawaModoki
 
         private void button1_Click(object sender, EventArgs e)
         {
-            NowEditTeamNum.Instance.Num = 1;
+            NowEditTeamNum.Instance.Num = 0;
             OpenEditTeam();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            NowEditTeamNum.Instance.Num = 2;
+            NowEditTeamNum.Instance.Num = 1;
             OpenEditTeam();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            NowEditTeamNum.Instance.Num = 3;
+            NowEditTeamNum.Instance.Num = 2;
             OpenEditTeam();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            NowEditTeamNum.Instance.Num = 4;
+            NowEditTeamNum.Instance.Num = 3;
             OpenEditTeam();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            NowEditTeamNum.Instance.Num = 5;
+            NowEditTeamNum.Instance.Num = 4;
             OpenEditTeam() ;
         }
     }

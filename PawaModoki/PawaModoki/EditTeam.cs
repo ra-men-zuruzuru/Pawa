@@ -545,6 +545,8 @@ namespace PawaModoki
         }
         private void Clos()
         {
+            EditMenu editMenu = new EditMenu();
+            editMenu.Show();
             this.Close();
         }
     }
