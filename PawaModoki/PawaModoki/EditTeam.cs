@@ -457,7 +457,6 @@ namespace PawaModoki
         }
         private void Save()
         {
-            TeamManager newinstance = new TeamManager();
             Team team = new Team();
             string strength = "";
             int atackpower = 0;

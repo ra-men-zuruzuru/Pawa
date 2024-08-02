@@ -10,6 +10,25 @@ namespace PawaModoki
     {
         
     }
+    internal class GameTeamId//シングルトンインスタンス
+    {
+        private static GameTeamId instance;
+        public int FirstTeamId { get; set; }
+        public int SecondTeamId { get; set; }
+        private GameTeamId() { }
+
+        public static GameTeamId Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameTeamId();
+                }
+                return instance;
+            }
+        }
+    }
     public class GameTeam
     {
         public int Id { get; set; }
@@ -65,7 +84,6 @@ namespace PawaModoki
 
         public GameTeamManager() { }
 
-        public Team TeamFirst { get; set; } 
-        public Team TeamSecond { get; set; }
+        public List <GameTeam> FirstTeams { get; set; }= new List<GameTeam>();
     }
 }

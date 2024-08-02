@@ -12,6 +12,7 @@ namespace PawaModoki
 {
     public partial class TeamSelection : Form
     {
+
         private LeftToRightProgressBar leftToRightProgressBar;
         private RightToLeftProgressBar rightProgressBar;
         List<ProgressBar> listLeftProgressBars = new List<ProgressBar>();
@@ -204,12 +205,14 @@ namespace PawaModoki
 
         private void buttonGameStart_Click(object sender, EventArgs e)
         {
-            Game game = new Game ();
-            GameTeamManager.instance = new GameTeamManager();
-            GameTeamManager.instance.TeamFirst = TeamManager.instance.GetId(firstTeamId);
-            GameTeamManager.instance.TeamSecond=TeamManager.instance.GetId(secondTeamId);
-            Console.WriteLine(GameTeamManager.instance.TeamFirst.TeamName);
-            game.Show ();
+            GameTeamId.Instance.FirstTeamId = firstTeamId;
+            GameTeamId.Instance.SecondTeamId = secondTeamId;
+            GameOpen();
+        }
+        private void GameOpen()
+        {
+            Game game = new Game();
+            game.Show();
         }
 
         private void buttonreturn_Click(object sender, EventArgs e)
