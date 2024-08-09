@@ -238,6 +238,7 @@
             // textBoxTeamName
             // 
             this.textBoxTeamName.Location = new System.Drawing.Point(940, 402);
+            this.textBoxTeamName.MaxLength = 8;
             this.textBoxTeamName.Name = "textBoxTeamName";
             this.textBoxTeamName.Size = new System.Drawing.Size(150, 25);
             this.textBoxTeamName.TabIndex = 27;

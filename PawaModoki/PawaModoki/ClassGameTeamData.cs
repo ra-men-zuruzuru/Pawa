@@ -68,7 +68,11 @@ namespace PawaModoki
 
     public class GameTeamManager
     {
-        public static GameTeamManager instance;
+        private static GameTeamManager instance;
+        public Team FirstTeam { get; set; }
+        public Team SecondTeam { get; set; }
+
+        private GameTeamManager() { }
 
         public static GameTeamManager Instance
         {
@@ -81,9 +85,6 @@ namespace PawaModoki
                 return instance;
             }
         }
-
-        public GameTeamManager() { }
-
-        public List <GameTeam> FirstTeams { get; set; }= new List<GameTeam>();
     }
+
 }

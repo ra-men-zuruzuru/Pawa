@@ -63,6 +63,7 @@ namespace PawaModoki
                 textBoxFilderName.Size = new Size(70, 25);
                 textBoxFilderName.Location = new Point(20, 45 + i * 35);
                 textBoxFilderName.Text = "パワプロ";
+                textBoxFilderName.MaxLength = 6;
                 this.Controls.Add(textBoxFilderName);
                 listTextboxFielderPlayerName.Add(textBoxFilderName); // リストに追加
                 //弾道
@@ -150,6 +151,7 @@ namespace PawaModoki
                 //名前
                 TextBox textBoxPitcherPlayerName = new TextBox();
                 textBoxPitcherPlayerName.Name = "textBoxPitcherPlayerName" + (i + 1);
+                textBoxPitcherPlayerName.MaxLength = 6;
                 textBoxPitcherPlayerName.Size = new Size(70, 25);
                 textBoxPitcherPlayerName.Location = new Point(425, 45 + i * 35);
                 textBoxPitcherPlayerName.Text = "パワプロ";
@@ -449,6 +451,12 @@ namespace PawaModoki
                     break;
                 }
                 or[t.SelectedIndex] = true;
+            }
+            if (textBoxTeamName.Text=="")
+            {
+                orok = false;
+                MessageBox.Show("チーム名を入力してください。", "エラー"
+                    , MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (orok)
             {

@@ -23,10 +23,11 @@ namespace PawaModoki
         public TeamSelection()
         {
             InitializeComponent();
+
             buttonGameStart.Enabled = false;
             buttonGameStart.Visible = false;
             InitialLabel_ProgressBar();
-            PutButton();
+            SetButton();
         }
         private void InitialLabel_ProgressBar()
         {
@@ -57,7 +58,7 @@ namespace PawaModoki
                 listRightProgressBars.Add(progressBar);
             }
         }
-        private void PutButton()
+        private void SetButton()
         {
             for (int i = 0; i < 5; i++)
             {
