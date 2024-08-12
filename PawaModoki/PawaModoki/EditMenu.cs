@@ -49,19 +49,19 @@ namespace PawaModoki
                 switch (i)
                 {
                     case 0:
-                        button.Click += new EventHandler(button1_Click);
+                        button.Click += new EventHandler(Button1_Click);
                         break;
                     case 1:
-                        button.Click += new EventHandler(button2_Click);
+                        button.Click += new EventHandler(Button2_Click);
                         break;
                     case 2:
-                        button.Click += new EventHandler(button3_Click);
+                        button.Click += new EventHandler(Button3_Click);
                         break;
                     case 3:
-                        button.Click += new EventHandler(button4_Click);
+                        button.Click += new EventHandler(Button4_Click);
                         break;
                     case 4:
-                        button.Click += new EventHandler(button5_Click);
+                        button.Click += new EventHandler(Button5_Click);
                         break;
                 }
                 openEditButtons.Add(button);
@@ -76,36 +76,36 @@ namespace PawaModoki
             this.Close();
         }
 
-        private void buttonInEditMenuReturn_Click(object sender, EventArgs e)
+        private void ButtonInEditMenuReturn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             NowEditTeamNum.Instance.Num = 0;
             OpenEditTeam();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             NowEditTeamNum.Instance.Num = 1;
             OpenEditTeam();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             NowEditTeamNum.Instance.Num = 2;
             OpenEditTeam();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             NowEditTeamNum.Instance.Num = 3;
             OpenEditTeam();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
             NowEditTeamNum.Instance.Num = 4;
             OpenEditTeam() ;

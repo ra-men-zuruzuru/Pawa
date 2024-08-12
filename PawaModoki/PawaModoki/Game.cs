@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +14,8 @@ namespace PawaModoki
 {
     public partial class Game : Form
     {
-        private DataTable scoreTable;
+        public DataGridView dataGridViewScore;
+        public DataTable scoreTable;
         private DataTable dataTableFirstTeam;
         private DataTable dataTableSecondTeam;
         private RadioButton radioButtonOneOut;
@@ -21,6 +23,15 @@ namespace PawaModoki
         private RadioButton radioButtonFirstBase;
         private RadioButton radioButtonSecondBase;
         private RadioButton radioButtonThirdBase;
+        private List<RadioButton> radioButtonsFirstTeamBatter=new List<RadioButton>();
+        private List<RadioButton> radioButtonsSecondTeamBatter = new List<RadioButton>();
+        private Button buttonPlay;
+        int firstTeamSumScore = 0;
+        int firstTeamNowInningScore = 0;
+        int secondTeamSumScore = 0;
+        int secondTeamNowInningScore = 0;
+        bool isGameEnd = false;
+        GameProcessing gameProcessing=new GameProcessing();
         public Game()
         {
             GameTeamManager.Instance.FirstTeam = TeamManager.instance.GetId(GameTeamId.Instance.FirstTeamId);
@@ -28,8 +39,7 @@ namespace PawaModoki
             InitializeComponent();
             SetDataGridViewTeam();
             SetDataGridViewScore();
-            SetLabelRadio();
-
+            SetLabelRadioButton();
         }
         private void SetDataGridViewTeam()
         {
@@ -107,7 +117,7 @@ namespace PawaModoki
 
         public void SetDataGridViewScore()
         {
-            DataGridView dataGridViewScore = new DataGridView();
+            dataGridViewScore = new DataGridView();
             dataGridViewScore.Size = new Size(530, 80);
             dataGridViewScore.Location = new Point(20, 380);
             scoreTable = GetScoreTable();
@@ -127,14 +137,23 @@ namespace PawaModoki
             dataGridViewScore.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             this.Controls.Add(dataGridViewScore);
         }
-        private void SetLabelRadio()
+        private void SetLabelRadioButton()
         {
-            labelScore.Text = $"{scoreTable.Rows[0][10]} - {scoreTable.Rows[1][10]}";
+            labelScore.Text = $"{firstTeamSumScore} - {secondTeamSumScore}";
+            //進めるボタン
+            buttonPlay = new Button();
+            buttonPlay.Name = "buttonPlay";
+            buttonPlay.Text = "進める";
+            buttonPlay.Location = new Point(40,340);
+            buttonPlay.Click += new EventHandler(Play);
+            this.Controls.Add(buttonPlay);
+
             // アウトカウントラジオボタン
             radioButtonOneOut=new RadioButton();
             radioButtonOneOut.Checked = false;
             radioButtonOneOut.Enabled = false;
             radioButtonOneOut.AutoSize = true;
+            radioButtonOneOut.AutoCheck = false;
             radioButtonOneOut.Name = "radioButtonOneOut";
             radioButtonOneOut.Location = new Point(615, 375);
             this.Controls.Add(radioButtonOneOut);
@@ -143,6 +162,7 @@ namespace PawaModoki
             radioButtonTwoOut.Checked = false;
             radioButtonTwoOut.Enabled = false;
             radioButtonTwoOut.AutoSize = true;
+            radioButtonTwoOut.AutoCheck = false;
             radioButtonTwoOut.Name = "radioButtonTwoOut";
             radioButtonTwoOut.Location = new Point(635, 375);
             this.Controls.Add(radioButtonTwoOut);
@@ -152,6 +172,8 @@ namespace PawaModoki
             radioButtonFirstBase.Checked = false;
             radioButtonFirstBase.Enabled = false;
             radioButtonFirstBase.AutoSize = true;
+            radioButtonFirstBase.AutoCheck = false;
+            radioButtonFirstBase.Text = "1";
             radioButtonFirstBase.Name = "radioButtonFirstBase";
             radioButtonFirstBase.Location = new Point(450,270);
             this.Controls.Add(radioButtonFirstBase);
@@ -160,6 +182,8 @@ namespace PawaModoki
             radioButtonSecondBase.Checked = false;
             radioButtonSecondBase.Enabled = false;
             radioButtonSecondBase.AutoSize = true;
+            radioButtonSecondBase.AutoCheck= false;
+            radioButtonSecondBase.Text = "2";
             radioButtonSecondBase.Name = "radioButtonSecondBase";
             radioButtonSecondBase.Location = new Point(390,200);
             this.Controls.Add(radioButtonSecondBase);
@@ -168,10 +192,91 @@ namespace PawaModoki
             radioButtonThirdBase.Checked = false;
             radioButtonThirdBase.Enabled = false;
             radioButtonThirdBase.AutoSize = true;
+            radioButtonThirdBase.AutoCheck =false;
+            radioButtonThirdBase.Text = "3";
             radioButtonThirdBase.Name = "radioButtonThirdBase";
             radioButtonThirdBase.Location = new Point(330,270);
             this.Controls.Add(radioButtonThirdBase);
 
+            //バッターのラジオボタン(先攻チーム)
+            for (int i=0;i<9;i++)
+            {
+                RadioButton radioButton=new RadioButton();
+                radioButton.Checked=false;
+                radioButton.Checked = i == 0;//一番バッターのみtrue
+                radioButton.Enabled=false;
+                radioButton.AutoSize=true;
+                radioButton.AutoCheck=false;
+                radioButton.Location = new Point(290,129+(i*21));
+                radioButtonsFirstTeamBatter.Add(radioButton);
+                this.Controls.Add(radioButton);
+            }
+            //後攻チーム
+            for (int i=0;i<9;i++)
+            {
+                RadioButton radioButton = new RadioButton();
+                radioButton.Checked = false;
+                radioButton.Checked = i == 0;//一番バッターのみtrue
+                radioButton.Enabled = false;
+                radioButton.AutoSize = true;
+                radioButton.AutoCheck = false;
+                radioButton.Location = new Point(490, 129 + (i * 21));
+                radioButtonsSecondTeamBatter.Add(radioButton);
+                this.Controls.Add(radioButton);
+            }
+
+        }
+        private void Play(object sender, EventArgs e)
+        {
+            firstTeamNowInningScore=gameProcessing.nowInningScore;
+            secondTeamNowInningScore = gameProcessing.nowInningScore;
+            gameProcessing.Play();
+            //ランナー処理
+            radioButtonFirstBase.Checked = gameProcessing.firstRunner;
+            radioButtonSecondBase.Checked= gameProcessing.secondRunner;
+            radioButtonThirdBase.Checked= gameProcessing.thirdRunner;
+            //アウトカウント処理
+            radioButtonOneOut.Checked = (gameProcessing.outCount==1 || gameProcessing.outCount==2);
+            radioButtonTwoOut.Checked = gameProcessing.outCount == 2;
+            //バッターラジオボタン処理
+            if (gameProcessing.isTopInning)
+            {
+                radioButtonsFirstTeamBatter.ForEach(radiobutton => radiobutton.Checked = false);
+                radioButtonsFirstTeamBatter[gameProcessing.firstTeamBatter].Checked = true;
+            }
+            else
+            {
+                radioButtonsSecondTeamBatter.ForEach(radiobutton => radiobutton.Checked = false);
+                radioButtonsSecondTeamBatter[gameProcessing.secondTeamBatter].Checked = true;
+            }
+            //得点表処理
+            if (gameProcessing.isTopInning) 
+            {
+                scoreTable.Rows[0][gameProcessing.inning] = gameProcessing.nowInningScore;
+                int i = gameProcessing.nowInningScore - firstTeamNowInningScore;
+                i = (i < 0) ? 0 : i;
+                firstTeamSumScore += i;
+                scoreTable.Rows[0][10] = firstTeamSumScore;
+            }
+            else
+            {
+                scoreTable.Rows[1][gameProcessing.inning] = gameProcessing.nowInningScore;
+                int i = gameProcessing.nowInningScore - secondTeamNowInningScore;
+                i = (i < 0) ? 0 : i;
+                secondTeamSumScore += i;
+                scoreTable.Rows[1][10] = secondTeamSumScore;
+            }
+            labelScore.Text = $"{firstTeamSumScore} - {secondTeamSumScore}";
+
+            //終了処理
+            if (gameProcessing.inning>9)
+            {
+                isGameEnd = true;
+                buttonPlay.Enabled = false;
+                buttonPlay.Visible = false;
+                MessageBox.Show("試合が終わりました", "試合終了"
+                        , MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private DataTable GetDataTableTeam()
         {
@@ -201,6 +306,26 @@ namespace PawaModoki
             DataRow row = scoreTable.Rows[1];
             row[1] = 3;
         }
+        private void buttonReturn_Click(object sender, EventArgs e)
+        {
+            if (isGameEnd)
+            {
+                this.Close();
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("本気ですか？",
+                "本気？",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button2);
 
+                //何が選択されたか調べる
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+        }
     }
 }

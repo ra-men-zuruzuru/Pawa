@@ -39,7 +39,7 @@
             this.buttonInEditMenuReturn.TabIndex = 10;
             this.buttonInEditMenuReturn.Text = "メインメニューに戻る";
             this.buttonInEditMenuReturn.UseVisualStyleBackColor = true;
-            this.buttonInEditMenuReturn.Click += new System.EventHandler(this.buttonInEditMenuReturn_Click);
+            this.buttonInEditMenuReturn.Click += new System.EventHandler(this.ButtonInEditMenuReturn_Click);
             // 
             // EditMenu
             // 

@@ -85,7 +85,7 @@ namespace PawaModoki
 
         public Team GetId(int id)
         {
-            return Teams.Find(team=>team.Id==id);
+            return Teams.Find(team=>team.Id==id);//ラムダ式
         }
         public void RemoveTeam(int id)
         {

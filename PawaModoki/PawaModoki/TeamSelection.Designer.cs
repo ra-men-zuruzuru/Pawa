@@ -168,7 +168,7 @@
             this.buttonreturn.TabIndex = 14;
             this.buttonreturn.Text = "もどる";
             this.buttonreturn.UseVisualStyleBackColor = true;
-            this.buttonreturn.Click += new System.EventHandler(this.buttonreturn_Click);
+            this.buttonreturn.Click += new System.EventHandler(this.Buttonreturn_Click);
             // 
             // buttonGameStart
             // 
@@ -178,7 +178,7 @@
             this.buttonGameStart.TabIndex = 15;
             this.buttonGameStart.Text = "試合開始";
             this.buttonGameStart.UseVisualStyleBackColor = true;
-            this.buttonGameStart.Click += new System.EventHandler(this.buttonGameStart_Click);
+            this.buttonGameStart.Click += new System.EventHandler(this.ButtonGameStart_Click);
             // 
             // TeamSelection
             // 

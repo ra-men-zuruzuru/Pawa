@@ -422,13 +422,13 @@ namespace PawaModoki
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void Button1_Click_1(object sender, EventArgs e)
         {
             test test = new test();
             test.Show();
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             bool orok = true;
             bool[] or = { false, false, false, false, false, false, false, false, false };
@@ -532,7 +532,7 @@ namespace PawaModoki
                         , MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void buttonreturn_Click(object sender, EventArgs e)
+        private void Buttonreturn_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("保存されていないデータは無くなります。戻ってもよろしいですか？",
                 "警告",

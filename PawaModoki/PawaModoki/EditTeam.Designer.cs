@@ -251,7 +251,7 @@
             this.button1.TabIndex = 28;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
             // 
             // label19
             // 
@@ -360,7 +360,7 @@
             this.buttonSave.TabIndex = 40;
             this.buttonSave.Text = "保存";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // buttonreturn
             // 
@@ -370,7 +370,7 @@
             this.buttonreturn.TabIndex = 41;
             this.buttonreturn.Text = "もどる";
             this.buttonreturn.UseVisualStyleBackColor = true;
-            this.buttonreturn.Click += new System.EventHandler(this.buttonreturn_Click);
+            this.buttonreturn.Click += new System.EventHandler(this.Buttonreturn_Click);
             // 
             // EditTeam
             // 

@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.labelScore = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonReturn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -71,11 +72,22 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "O";
             // 
+            // buttonReturn
+            // 
+            this.buttonReturn.Location = new System.Drawing.Point(1103, 632);
+            this.buttonReturn.Name = "buttonReturn";
+            this.buttonReturn.Size = new System.Drawing.Size(127, 47);
+            this.buttonReturn.TabIndex = 4;
+            this.buttonReturn.Text = "終わる";
+            this.buttonReturn.UseVisualStyleBackColor = true;
+            this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 944);
+            this.Controls.Add(this.buttonReturn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelScore);
             this.Controls.Add(this.label2);
@@ -94,5 +106,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonReturn;
     }
 }

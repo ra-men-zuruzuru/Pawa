@@ -204,7 +204,7 @@ namespace PawaModoki
             }
         }
 
-        private void buttonGameStart_Click(object sender, EventArgs e)
+        private void ButtonGameStart_Click(object sender, EventArgs e)
         {
             GameTeamId.Instance.FirstTeamId = firstTeamId;
             GameTeamId.Instance.SecondTeamId = secondTeamId;
@@ -216,7 +216,7 @@ namespace PawaModoki
             game.Show();
         }
 
-        private void buttonreturn_Click(object sender, EventArgs e)
+        private void Buttonreturn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
