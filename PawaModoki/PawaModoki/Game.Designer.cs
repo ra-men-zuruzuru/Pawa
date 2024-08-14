@@ -78,7 +78,7 @@
             this.buttonReturn.Name = "buttonReturn";
             this.buttonReturn.Size = new System.Drawing.Size(127, 47);
             this.buttonReturn.TabIndex = 4;
-            this.buttonReturn.Text = "終わる";
+            this.buttonReturn.Text = "おわる";
             this.buttonReturn.UseVisualStyleBackColor = true;
             this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
             // 

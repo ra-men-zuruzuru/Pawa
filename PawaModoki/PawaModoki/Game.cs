@@ -300,12 +300,6 @@ namespace PawaModoki
             table.Columns.Add("計", typeof(int));
             return table;
         }
-        private void aru()
-        {
-            //一回裏に3を追加する
-            DataRow row = scoreTable.Rows[1];
-            row[1] = 3;
-        }
         private void buttonReturn_Click(object sender, EventArgs e)
         {
             if (isGameEnd)
@@ -314,7 +308,7 @@ namespace PawaModoki
             }
             else
             {
-                DialogResult result = MessageBox.Show("本気ですか？",
+                DialogResult result = MessageBox.Show("試合の途中です。本当に終わりますか？",
                 "本気？",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Exclamation,
