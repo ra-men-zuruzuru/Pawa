@@ -62,7 +62,7 @@ namespace PawaModoki
                 textBoxFilderName.Name = "textBoxFielderPlayerName" + (i + 1);
                 textBoxFilderName.Size = new Size(70, 25);
                 textBoxFilderName.Location = new Point(20, 45 + i * 35);
-                textBoxFilderName.Text = "パワプロ";
+                textBoxFilderName.Text = "そこのヒト";
                 textBoxFilderName.MaxLength = 6;
                 this.Controls.Add(textBoxFilderName);
                 listTextboxFielderPlayerName.Add(textBoxFilderName); // リストに追加
@@ -154,7 +154,7 @@ namespace PawaModoki
                 textBoxPitcherPlayerName.MaxLength = 6;
                 textBoxPitcherPlayerName.Size = new Size(70, 25);
                 textBoxPitcherPlayerName.Location = new Point(425, 45 + i * 35);
-                textBoxPitcherPlayerName.Text = "パワプロ";
+                textBoxPitcherPlayerName.Text = "そこのヒト";
                 this.Controls.Add(textBoxPitcherPlayerName);
                 listTextboxPitcherPlayerName.Add(textBoxPitcherPlayerName);
                 //球速

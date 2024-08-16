@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace PawaModoki
 {
-    internal class ClassGameTeamData
-    {
-        
-    }
-    internal class GameTeamId//シングルトンインスタンス
+    internal class GameTeamId//シングルトンインスタンス//
     {
         private static GameTeamId instance;
         public int FirstTeamId { get; set; }
@@ -66,7 +62,7 @@ namespace PawaModoki
     }
 
 
-    public class GameTeamManager
+    public class GameTeamManager//データを保存しとくとこ
     {
         private static GameTeamManager instance;
         public Team FirstTeam { get; set; }

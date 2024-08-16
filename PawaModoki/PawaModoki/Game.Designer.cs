@@ -33,6 +33,8 @@
             this.labelScore = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonReturn = new System.Windows.Forms.Button();
+            this.labelFirstTeamName = new System.Windows.Forms.Label();
+            this.labelSecondTeamName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -82,11 +84,33 @@
             this.buttonReturn.UseVisualStyleBackColor = true;
             this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
             // 
+            // labelFirstTeamName
+            // 
+            this.labelFirstTeamName.AutoSize = true;
+            this.labelFirstTeamName.Font = new System.Drawing.Font("MS UI Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelFirstTeamName.Location = new System.Drawing.Point(55, 76);
+            this.labelFirstTeamName.Name = "labelFirstTeamName";
+            this.labelFirstTeamName.Size = new System.Drawing.Size(136, 28);
+            this.labelFirstTeamName.TabIndex = 5;
+            this.labelFirstTeamName.Text = "先攻チーム";
+            // 
+            // labelSecondTeamName
+            // 
+            this.labelSecondTeamName.AutoSize = true;
+            this.labelSecondTeamName.Font = new System.Drawing.Font("MS UI Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelSecondTeamName.Location = new System.Drawing.Point(1047, 76);
+            this.labelSecondTeamName.Name = "labelSecondTeamName";
+            this.labelSecondTeamName.Size = new System.Drawing.Size(136, 28);
+            this.labelSecondTeamName.TabIndex = 6;
+            this.labelSecondTeamName.Text = "後攻チーム";
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 944);
+            this.Controls.Add(this.labelSecondTeamName);
+            this.Controls.Add(this.labelFirstTeamName);
             this.Controls.Add(this.buttonReturn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelScore);
@@ -107,5 +131,7 @@
         private System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonReturn;
+        private System.Windows.Forms.Label labelFirstTeamName;
+        private System.Windows.Forms.Label labelSecondTeamName;
     }
 }

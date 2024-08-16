@@ -26,6 +26,8 @@ namespace PawaModoki
         private List<RadioButton> radioButtonsFirstTeamBatter=new List<RadioButton>();
         private List<RadioButton> radioButtonsSecondTeamBatter = new List<RadioButton>();
         private Button buttonPlay;
+        DataGridView dataGridViewFirstTeam = new DataGridView();
+        DataGridView dataGridViewSecondTeam = new DataGridView();
         int firstTeamSumScore = 0;
         int firstTeamNowInningScore = 0;
         int secondTeamSumScore = 0;
@@ -43,9 +45,8 @@ namespace PawaModoki
         }
         private void SetDataGridViewTeam()
         {
-            DataGridView dataGridViewFirstTeam = new DataGridView();
-            DataGridView dataGridViewSecondTeam = new DataGridView();
             //先攻チーム表
+            dataGridViewFirstTeam = new DataGridView();
             dataTableFirstTeam = GetDataTableTeam();
             foreach (var t in GameTeamManager.Instance.FirstTeam.FielderPlayers)
             {
@@ -54,16 +55,18 @@ namespace PawaModoki
             }
             dataGridViewFirstTeam.DataSource = dataTableFirstTeam;
             dataGridViewFirstTeam.Location = new Point(10, 100);
-            dataGridViewFirstTeam.Size = new Size(270, 220);
+            dataGridViewFirstTeam.Size = new Size(258, 220);
             dataGridViewFirstTeam.AllowDrop = false;
             dataGridViewFirstTeam.AllowUserToAddRows = false;
             dataGridViewFirstTeam.AllowUserToDeleteRows = false;
             dataGridViewFirstTeam.AllowUserToResizeRows = false;
             dataGridViewFirstTeam.AllowUserToResizeColumns = false;
             dataGridViewFirstTeam.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewFirstTeam.BackgroundColor = Color.Yellow;
             this.Controls.Add(dataGridViewFirstTeam);
 
             //後攻チーム表
+            dataGridViewSecondTeam=new DataGridView();
             dataTableSecondTeam = GetDataTableTeam();
             foreach (var t in GameTeamManager.Instance.SecondTeam.FielderPlayers)
             {
@@ -131,14 +134,13 @@ namespace PawaModoki
             dataGridViewScore.AllowUserToResizeRows = false;
             //DataGridView1の列の幅をユーザーが変更できないようにする
             dataGridViewScore.AllowUserToResizeColumns = false;
-
-            //DataGridView1の行の高さをユーザーが変更できないようにする
-            dataGridViewScore.AllowUserToResizeRows = false;
             dataGridViewScore.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             this.Controls.Add(dataGridViewScore);
         }
         private void SetLabelRadioButton()
         {
+            labelFirstTeamName.Text = GameTeamManager.Instance.FirstTeam.TeamName;
+            labelSecondTeamName.Text= GameTeamManager.Instance.SecondTeam.TeamName;
             labelScore.Text = $"{firstTeamSumScore} - {secondTeamSumScore}";
             //進めるボタン
             buttonPlay = new Button();
@@ -146,6 +148,7 @@ namespace PawaModoki
             buttonPlay.Text = "進める";
             buttonPlay.Location = new Point(40,340);
             buttonPlay.Click += new EventHandler(Play);
+            buttonPlay.TabIndex = 0;
             this.Controls.Add(buttonPlay);
 
             // アウトカウントラジオボタン
@@ -228,9 +231,21 @@ namespace PawaModoki
         }
         private void Play(object sender, EventArgs e)
         {
+            bool isSayonara = false;
             firstTeamNowInningScore=gameProcessing.nowInningScore;
             secondTeamNowInningScore = gameProcessing.nowInningScore;
             gameProcessing.Play();
+            //オモテかウラか表示
+            if (gameProcessing.isTopInning)
+            {
+                dataGridViewFirstTeam.BackgroundColor = Color.Yellow;
+                dataGridViewSecondTeam.BackgroundColor = SystemColors.AppWorkspace;
+            }
+            else
+            {
+                dataGridViewFirstTeam.BackgroundColor = SystemColors.AppWorkspace;
+                dataGridViewSecondTeam.BackgroundColor = Color.Yellow;
+            }
             //ランナー処理
             radioButtonFirstBase.Checked = gameProcessing.firstRunner;
             radioButtonSecondBase.Checked= gameProcessing.secondRunner;
@@ -267,10 +282,29 @@ namespace PawaModoki
                 scoreTable.Rows[1][10] = secondTeamSumScore;
             }
             labelScore.Text = $"{firstTeamSumScore} - {secondTeamSumScore}";
-
+            
             //終了処理
-            if (gameProcessing.inning>9)
+            if (gameProcessing.inning == 9 && firstTeamSumScore < secondTeamSumScore 
+                && !gameProcessing.isTopInning)
+                isSayonara=true;
+
+            if (gameProcessing.inning>9 || isSayonara)
             {
+                if (firstTeamSumScore>secondTeamSumScore)
+                {
+                    dataGridViewFirstTeam.BackgroundColor = Color.Red;
+                    dataGridViewSecondTeam.BackgroundColor = Color.Blue;
+                }
+                else if (firstTeamSumScore < secondTeamSumScore)
+                {
+                    dataGridViewFirstTeam.BackgroundColor = Color.Blue;
+                    dataGridViewSecondTeam.BackgroundColor = Color.Red;
+                }
+                else if(firstTeamSumScore == secondTeamSumScore)
+                {
+                    dataGridViewFirstTeam.BackgroundColor = Color.Green;
+                    dataGridViewSecondTeam.BackgroundColor = Color.Green;
+                }
                 isGameEnd = true;
                 buttonPlay.Enabled = false;
                 buttonPlay.Visible = false;
